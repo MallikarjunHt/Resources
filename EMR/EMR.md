@@ -48,11 +48,3 @@
     * [Kafka, Kinesis] -> [S3, HDFS]  using [Spark, Flink]
 * Interactive analytics
 * Genomics
-
-### Amazon EMRMigration Guide
-
-
-## KAFKA -> HDFS
-
-* [Gobblin](https://github.com/apache/incubator-gobblin).
-* [Kafka Connect framework](https://github.com/confluentinc/kafka-connect-hdfs).
