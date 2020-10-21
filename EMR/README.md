@@ -1,9 +1,9 @@
 # Amazon EMR
 
 Topics
-- [ ] What is EMR
-- [ ] Benefits
-- [ ] Features
+- [X] What is EMR
+- [X] Benefits
+- [X] Features
 - [ ] worklode
 - [ ] Getting started with Amazon EMR
   - [ ] Spark
