@@ -16,15 +16,15 @@ jobs:
     - name: Checkout HEAD
       uses: actions/checkout@v2
       with:
-        ref: master
+        ref: master # main branch
     
     # Step 2: run this sync action - specify the upstream repo, upstream branch to sync with, and target sync branch
     - name: Pull upstream changes
       id: sync
       uses: bdougie/Fork-Sync-With-Upstream-action@fork
       with:
-        upstream_repository: MallikarjunHt/Resources
-        upstream_branch: master
+        upstream_repository: MallikarjunHt/Resources #your repo
+        upstream_branch: master #your main branch
         target_branch: master                       # optional
         github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that requir authentication
         
