@@ -16,7 +16,7 @@ jobs:
     - name: Checkout HEAD
       uses: actions/checkout@v2
       with:
-        ref: main
+        ref: master
     
     # Step 2: run this sync action - specify the upstream repo, upstream branch to sync with, and target sync branch
     - name: Pull upstream changes
@@ -24,8 +24,8 @@ jobs:
       uses: bdougie/Fork-Sync-With-Upstream-action@fork
       with:
         upstream_repository: open-sauced/goals-template
-        upstream_branch: main
-        target_branch: main                       # optional
+        upstream_branch: master
+        target_branch: master                       # optional
         github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that requir authentication
         
     # Step 3: Print a helpful timestamp for your records (optional)
