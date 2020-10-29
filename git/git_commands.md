@@ -13,6 +13,11 @@ make a git Directrey in local
 . [ ] commit
 . [ ] push to remote
 
+```git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+
 directrey
 > mkdir {github, or any project name"
 
