@@ -1,17 +1,17 @@
 # general git commands
 
 make a git Directrey in local
-. [ ] connecting to github
-. [ ] clone or inetilise repositrey
+- [ ] connecting to github
+- [ ] clone or inetilise repositrey
     * clone from remote
     * create in local 
-. [ ] make a branch in local
+- [ ] make a branch in local
     * fetch
-. [ ] checkout
-. [ ] make changes
-. [ ] stage 
-. [ ] commit
-. [ ] push to remote
+- [ ] checkout
+- [ ] make changes
+- [ ] stage 
+- [ ] commit
+- [ ] push to remote
 
 ```git
 git config --global user.email "you@example.com"
