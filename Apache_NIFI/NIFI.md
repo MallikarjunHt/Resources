@@ -1,3 +1,4 @@
+<!-- General qustions -->
 ## What is `Apache NiFi`?
 * Apache NiFi is a software project from the Apache Software Foundation designed to automate the flow of data between software systems.
   
@@ -34,7 +35,7 @@
 ## How do i stop NIFI?
 * From a terminal window, navigate to the NiFi installation directory.
 > `bin/nifi.sh stop`
-
+<!-- Features -->
 ## NiFi- General Features
 * web based user interface
 * Highly configurable
@@ -54,7 +55,7 @@
   * other encriptions
 * user and role managment
   * configure LDAP for authorization
-
+<!-- Concepts -->
 ## Key concepts
 * Process group
   - group of NIFI Flows 
@@ -122,8 +123,8 @@
      > org.apache.nifi.provenance.PersistentProvenanceRepository
 
 ![Proviance](./images/provenance_repository.jpg)
-
-
+<!-- SetUp -->
+---
 ## Environment Setup
 - unix | linux
   - step 1
@@ -143,7 +144,8 @@
    - step 5
      - UI
      - `http://localhost:8080/nifi/`
-
+---
+<!-- UI -->
 ## NiFi UI
 - user attributes
    - Active Threads
@@ -159,8 +161,10 @@
    - Stale Versioned Process Groups
    - Locally modified and Stale Versioned Process Groups
    - Sync failure Versioned Process Groups
+
 ###  Web UI
 ![UI](./images/user_interface.jpg)
+<!-- Components of Apache NiFi -->
 ## Components of Apache NiFi
 - *Processors*
   - User can drag the process icon on the canvas and select the desired processor for the data flow in NiFi.
@@ -190,3 +194,130 @@ Input port is used to get data from the processor, which is not present in that 
 - *Label*
   - add text on NiFi canvas
   ![label](images/label_icon.jpg)
+---
+<!-- Processors -->
+##  Processors
+- basic block to create data flow
+- Ex: 
+  - etching file from one directory using GetFile processor and storing it in another directory using PutFile processor.
+    ![put file](images/putfile_processor.jpg)
+
+- **GetFile**
+  - fetch files of a specific format from a specific directory
+  
+    ### GetFile Settings
+      - Name
+      - Enable (enable or disable the processor)
+      - Penalty Duration (in the event of flowfile failure)
+      - Yield Duration (yield time for processor. In this duration, the process is not scheduled again.)
+      - Bulletin Level ( log level of that processor)
+      - Automatically Terminate Relationships 
+        - list of check of all the available relationship 
+        - user can program processor to terminate the flowfile
+        - 
+![relationship](images/automatically_terminate_relationships.jpg)
+
+
+### GetFile Scheduling
+- Schedule Strategy 
+  - time driven
+  - CRON driver
+- Concurrent Tasks
+- Execution
+  - all nodes
+  - Primary node
+- Run Schedule
+  ![run schedule](images/run_schedule.jpg)
+
+### GetFile Properties
+![getfile](images/getfile_properties.jpg)
+`* Input directory and file filte`
+### GetFile Comments
+- specify any information about processor.
+
+## PutFile
+![put file](images/putfile.jpg)
+### PutFile Settings
+same as **GetFile**
+### PutFile Settings
+![settings](images/putFile_terminate.jpg)
+### PutFile Scheduling
+![PutFile Scheduling](images/putfile_run_schedule.jpg)
+### PutFile Properties
+![PutFile Properties](images/putfile_properties.jpg)
+<!-- Categorization -->
+---
+## Processors Categorization
+  ### Data Ingestion Processors
+    - starting point of any data flow
+    - GetFile, GetHTTP, GetFTP, GetKAFKA, etc.
+
+  ### Routing and Mediation Processors
+  - route the flowfiles to different processors or data flows
+    > RouteOnAttribute, RouteOnContent, ControlRate, RouteText, etc
+  ### Database Access Processors
+  - selecting or inserting data or executing and preparing other SQL statements 
+  - use data connection pool controller setting
+  > ExecuteSQL, PutSQL, PutDatabaseRecord, ListDatabaseTables, etc.
+  ### Attribute Extraction Processors
+  -  extract, analyze, change flowfile attributes
+  -  UpdateAttribute, EvaluateJSONPath, ExtractText, AttributesToJSON, etc.
+  ### System Interaction Processors
+  -  run processes or commands
+  -  run scripts in many languages
+  > ExecuteScript, ExecuteProcess, ExecuteGroovyScript, ExecuteStreamCommand, etc.
+  ### Data Transformation Processors
+  - altering content of the flowfiles
+  - fully replace the data of a flowfile (send flowfile as an HTTP body to invokeHTTP processor)
+  > ReplaceText, JoltTransformJSON
+  ### Sending Data Processors
+  - end processor in a data flow.
+  - send data to the destination server
+  - (on complition) DROP the flowfile with success relationship
+  > PutEmail, PutKafka, PutSFTP, PutFile, PutFTP, etc.
+  ### Splitting and Aggregation Processors
+  - split and merge the content present in a flowfile
+  > SplitText, SplitJson, SplitXml, MergeContent, SplitContent, etc.
+  ### HTTP Processors
+  - HTTP and HTTPS calls
+  > InvokeHTTP, PostHTTP, ListenHTTP, etc.
+  ### AWS Processors
+> GetSQS, PutSNS, PutS3Object, FetchS3Object, etc.
+---
+<!-- Relationship -->
+  ## Processors Relationship
+![Relationship](images/configure_processor.jpg)
+
+  ### Success
+  When a processor **successfully** processes a flowfile like *store* or *fetch* data from any datasource **without getting any connection, authentication or any other error**, then the flowfile goes to *success relationship.*
+  ### Failure
+  - when process encounters **authentication error or connection problem** 
+  - flowfile can be transfered to other process using connection
+  - we can select or loadbalance
+  ![failure](images/failure.jpg)
+    - connection marked in red have failure relationship
+    - process without errors will be transferred to the connection marked in green
+  ### comms.failure
+  - when a Flowfile could not be fetched from the remote server due to a communications failure.
+
+  ### not.found
+  - ‘Not Found’ *message* marked as **not.found** 
+
+  ### permission.denied
+  - **insufficient permission**
+
+  ### FlowFile
+  - data connections and attribute
+  ![FlowFile](images/flowfile.jpg)  
+  * **mime.type**
+    - It specifies the MIME Type of this FlowFile.
+  <!--  Queues -->
+  ---
+  ##  Queues
+  ![ Queues](images/queuing_system.jpg)
+  - List queue(view)
+  -  empty queue(clear)
+  -  restart
+     ![list queue](images/list_queue.jpg)
+      > **info icon**, position, UUID, Filename, File size, Queue Duration, and Lineage Duration
+      
