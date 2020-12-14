@@ -320,4 +320,35 @@ same as **GetFile**
   -  restart
      ![list queue](images/list_queue.jpg)
       > **info icon**, position, UUID, Filename, File size, Queue Duration, and Lineage Duration
-      
+      - click on `icon info` to view more details.
+   <!-- Process Groups -->
+   ## Process Groups
+   ![Process Groups](images/process_group.jpg)
+   > NiFi FileFlow >> process_group >> peocess_group_1
+   - List all process groups (summarey on top left)
+      > parameters like Version State, Transferred/Size, In/Size, Read/Write, Out/Size
+
+   ![summeary](images/nifi_summary.jpg)
+<!-- Labels -->
+  ## Labels ![Labels](images/nifi_lable.jpg)
+  - The leftmost icon in the top menu of NiFi UI
+  <!-- Configuration -->
+  ## Configuration
+  >  nifi.properties file in conf directory
+
+  ### Core properties
+  |name|value|description|
+  |---|---|---|
+  |nifi.flow.configuration.file|./conf/flow.xml.gz|* path to flow.xml file  * all data files created in NiFi |
+  |nifi.flow.configuration.archive.enabled|	true | enable or disable archive|
+  |nifi.flow.configuration.archive.dir|./conf/archive/|archive directory|
+  |nifi.flow.configuration.archive.max.time|30 days | retention time for archiving|
+  |nifi.flow.configuration.archive.max.storage	| 500 MB |maximum size of archiving directory can grow|
+  |nifi.authorizer.configuration.file	|./conf/authorizers.xml|authorizer configuration file,used for user authorization|
+  |nifi.login.identity.provider.configuration.file	|./conf/login-identity-providers.xml|configuration of login|
+  | nifi.templates.directory	|./conf/templates	|directrey where templets will be stored|
+  |nifi.nar.library.directory	|./lib|NAR files|
+  |nifi.nar.working.directory|./work/nar/|unpacked NAR files|
+  |nifi.documentation.working.directory	|./work/docs/components	|documentation of all components|
+
+  ---
